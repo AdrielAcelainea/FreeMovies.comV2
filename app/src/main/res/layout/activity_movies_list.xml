@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/img_2"
+    android:backgroundTint="#31E3E3E3"
+    android:backgroundTintMode="src_over"
+    tools:context=".MoviesList">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Movies List"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/cinematiclanguage"
+        android:textColor="@color/white"
+        android:textSize="55dp"/>
+
+    <Button
+        android:id="@+id/parentalGuidance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pg13"
+        android:fontFamily="@font/cinematiclanguage"
+        android:textSize="20dp"/>
+
+    <ListView
+        android:id="@+id/movieList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"/>
+</LinearLayout>
