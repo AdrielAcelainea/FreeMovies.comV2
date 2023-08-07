@@ -3,6 +3,7 @@ package sg.edu.rp.c346.id22016845.freemoviescom;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
@@ -22,6 +23,7 @@ public class MoviesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_list);
         pg13button = findViewById(R.id.parentalGuidance);
+        pg13button.setBackgroundColor(Color.parseColor("#B0E0E6"));
         moviesList = findViewById(R.id.movieList);
         alMoviesList = new ArrayList<Movies>();
         adapter = new CustomAdapter(this, R.layout.row, alMoviesList);
@@ -46,7 +48,7 @@ public class MoviesList extends AppCompatActivity {
                 DBHelper dbh = new DBHelper(MoviesList.this);
                 alMoviesList.clear();
                 String pg13 = "PG13";
-                alMoviesList.addAll(dbh.getMovies(String.valueOf(pg13.length())));
+                alMoviesList.addAll(dbh.getMovies(pg13));
                 adapter.notifyDataSetChanged();
             }
         });

@@ -1,10 +1,14 @@
 package sg.edu.rp.c346.id22016845.freemoviescom;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,6 +35,9 @@ public class EditMovies extends AppCompatActivity {
         delete = findViewById(R.id.delete);
         cancel = findViewById(R.id.cancel);
         rating = findViewById(R.id.spinner2);
+        update.setBackgroundColor(Color.parseColor("#B0E0E6"));
+        cancel.setBackgroundColor(Color.parseColor("#B0E0E6"));
+        delete.setBackgroundColor(Color.parseColor("#B0E0E6"));
 
         Intent intent = getIntent();
         int movieId = intent.getIntExtra("ID",-1);
@@ -42,7 +49,16 @@ public class EditMovies extends AppCompatActivity {
         title.setText(movieTitle);
         genre.setText(movieGenre);
         year.setText(String.valueOf(movieYear));
+        rating.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,15 +77,37 @@ public class EditMovies extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHelper db = new DBHelper(EditMovies.this);
-                db.deleteMovie(movieId);
-                finish();
+                AlertDialog.Builder myBuilder = new AlertDialog.Builder(EditMovies.this);
+                myBuilder.setTitle("Delete Movie");
+                myBuilder.setMessage("Do you want to delete the movie?");
+                myBuilder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DBHelper db = new DBHelper(EditMovies.this);
+                        db.deleteMovie(movieId);
+                        finish();
+                    }
+                });
+                myBuilder.setNegativeButton("Cancel",null);
+                AlertDialog myDialog = myBuilder.create();
+                myDialog.show();
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                AlertDialog.Builder myBuilder = new AlertDialog.Builder(EditMovies.this);
+                myBuilder.setTitle("Cancel");
+                myBuilder.setMessage("Do you want to discard all changes?");
+                myBuilder.setPositiveButton("Discard", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                myBuilder.setNegativeButton("Do not Discard",null);
+                AlertDialog myDialog = myBuilder.create();
+                myDialog.show();
             }
         });
     }
