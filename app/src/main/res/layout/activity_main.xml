@@ -119,6 +119,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cinematiclanguage"
+            android:textSize="20dp"
             android:text="@string/insert" />
 
         <Button
@@ -126,6 +129,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cinematiclanguage"
+            android:textSize="20dp"
             android:text="@string/showList" />
     </LinearLayout>
 </LinearLayout>

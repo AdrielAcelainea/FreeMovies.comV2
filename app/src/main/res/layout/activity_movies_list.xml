@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:text="@string/pg13"
         android:fontFamily="@font/cinematiclanguage"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
 
     <ListView
         android:id="@+id/movieList"
